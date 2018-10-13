@@ -76,6 +76,7 @@ place_bomb=[ Object(InputEventMouseButton,"resource_local_to_scene":false,"resou
 2d_physics/layer_3="ladders"
 2d_physics/layer_4="player"
 2d_physics/layer_5="bombs"
+2d_physics/layer_6="safe_zone"
 
 [node]
 

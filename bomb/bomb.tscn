@@ -1,17 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://bomb/bomb.gd" type="Script" id=1]
 [ext_resource path="res://bomb/bomb.svg" type="Texture" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32.7363, 59.9882 )
-
-[sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
-extents = Vector2( 37.7504, 28.5495 )
 
 [sub_resource type="DynamicFontData" id=3]
 
@@ -20,47 +10,38 @@ font_path = "res://fonts/LCDMonoWinTT/LCDMB___.TTF"
 
 [sub_resource type="DynamicFont" id=4]
 
-size = 39
+size = 21
 use_mipmaps = true
 use_filter = true
 font_data = SubResource( 3 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="bomb" type="KinematicBody2D" index="0"]
+[node name="bomb" type="Node2D" index="0" groups=[
+"bombs",
+]]
 
-input_pickable = false
-collision_layer = 16
-collision_mask = 3
-collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 delay = 5
 strength = 1000
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="." index="0"]
+[node name="bomb" type="Sprite" parent="." index="0"]
 
-position = Vector2( -31.9844, 4.38346 )
-shape = SubResource( 1 )
-
-[node name="collision_shape_2d_2" type="CollisionShape2D" parent="." index="1"]
-
-position = Vector2( 27.4345, 34.9627 )
-shape = SubResource( 2 )
-
-[node name="bomb" type="Sprite" parent="." index="2"]
-
+position = Vector2( 9.46498, -9.55408 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Offset" ]
+_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="display" type="Label" parent="." index="3"]
+[node name="display" type="Label" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 16.0
-margin_right = 46.0
-margin_bottom = 59.0
+margin_left = -30.0
+margin_top = -19.0
+margin_right = 16.0
+margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -77,11 +58,11 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_fonts" ]
 
-[node name="timer" type="Timer" parent="." index="4"]
+[node name="timer" type="Timer" parent="." index="2"]
 
 process_mode = 0
 wait_time = 1.0
 one_shot = true
-autostart = true
+autostart = false
 
 

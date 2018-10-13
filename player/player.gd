@@ -9,23 +9,33 @@ export(float) var climb_deceleration = 1024
 export(float) var walk_speed = 512
 export(float) var climb_speed = 256
 export(float) var ladder_center_speed = 256
-export(float) var gravity = 500
+export(float) var gravity = 1000
+export(float) var jump_speed = 384
+
+signal placed_bomb
+signal exploded
 
 enum State { WALKING, CLIMBING }
 
 var state = State.WALKING
 var velocity = Vector2(0, 0)
 var ladders = []
+var cowering = false
 
 func _ready():
 	$ladder_sensor.connect("area_entered", self, "ladder_entered")
 	$ladder_sensor.connect("area_exited", self, "ladder_exited")
+	$bomb.connect("exploded", self, "_bomb_exploded")
+	$bomb.start()
 
 func _physics_process(delta):
-	_process_movement(delta)
+	var direction = Vector2() if cowering else _input_direction()
+	var jumping = not cowering and _input_jumping()
+
+	_process_movement(direction, jumping, delta)
 	_process_bomb_placement()
 
-func _process_movement(delta):
+func _input_direction():
 	var direction = Vector2()
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
@@ -35,19 +45,26 @@ func _process_movement(delta):
 		direction.y -= 1
 	if Input.is_action_pressed("move_down"):
 		direction.y += 1
-	
+	return direction
+
+func _input_jumping():
+	return Input.is_action_just_pressed("move_up")
+
+func _process_movement(direction, jumping, delta):
 	if direction.y != 0 and ladders.size() > 0:
 		state = State.CLIMBING
 		velocity.y = clamp(velocity.y, -climb_speed, climb_speed)
-		collision_mask &= ~2
+		collision_mask &= ~2 # pass through floors
 	elif state == State.CLIMBING and ladders.size() == 0:
 		state = State.WALKING
-		collision_mask |= 2
+		collision_mask |= 2 # walk on floors
 	
 	if is_on_floor() or state == State.CLIMBING:
 		velocity.x = _apply_movement(velocity.x, direction.x, walk_acceleration, walk_deceleration, walk_speed, delta)
 	else:
 		velocity.x = _apply_movement(velocity.x, direction.x, air_acceleration, air_deceleration, walk_speed, delta)
+	if jumping and is_on_floor() and state == State.WALKING:
+		velocity.y -= jump_speed
 	
 	var ladder_center_velocity = Vector2(0, 0)
 	match state:
@@ -118,10 +135,20 @@ func _process_bomb_placement():
 	$ray_cast/bomb_line.points = points
 	$ray_cast/bomb_line.self_modulate = Color(1, 1, 1, 0.5 if can_place_bomb else 0.1)
 	
-	if Input.is_action_just_pressed("place_bomb"):
+	if not cowering and Input.is_action_just_pressed("place_bomb"):
 		if can_place_bomb:
 			var bomb = preload("res://bomb/bomb.tscn").instance()
-			get_parent().add_child(bomb)
-			bomb.place(ray_start, ray_end - ray_start)
+			bomb.place(ray_end, $ray_cast.get_collision_normal(), $ray_cast.get_collider())
+			bomb.delay = $bomb.time_left()
+			bomb.start()
+			emit_signal("placed_bomb", bomb)
 		else:
 			pass # TODO play sound effect
+
+func cower():
+	cowering = true
+	$bomb.queue_free()
+	$ray_cast/bomb_line.visible = false
+
+func _bomb_exploded(bomb):
+	emit_signal("exploded", bomb)

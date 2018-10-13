@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://levels/level_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://blocks/block_long_v.tscn" type="PackedScene" id=2]
@@ -9,6 +9,16 @@
 
 script/source = "extends RigidBody2D
 "
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 1024, 128 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 1024, 128 )
 
 [node name="level_01" index="0" instance=ExtResource( 1 )]
 
@@ -43,28 +53,39 @@ script = SubResource( 1 )
 
 [node name="ladder" parent="buildings/target_building" index="5" instance=ExtResource( 4 )]
 
-position = Vector2( -384, -56 )
+position = Vector2( 128, 8 )
+height = 640.0
 
 [node name="ladder_2" parent="buildings/target_building" index="6" instance=ExtResource( 4 )]
 
-position = Vector2( -384, -184 )
+position = Vector2( 640, 8 )
+height = 640.0
 
 [node name="ladder_3" parent="buildings/target_building" index="7" instance=ExtResource( 4 )]
 
-position = Vector2( -384, -312 )
-
-[node name="ladder_4" parent="buildings/target_building" index="8" instance=ExtResource( 4 )]
-
-position = Vector2( -384, -440 )
-
-[node name="ladder_5" parent="buildings/target_building" index="9" instance=ExtResource( 4 )]
-
-position = Vector2( -384, -568 )
+position = Vector2( -640, 8 )
+height = 640.0
 
 [node name="bombs" type="Node2D" parent="." index="2"]
 
 [node name="player" parent="." index="3"]
 
 position = Vector2( 800, 768 )
+
+[node name="safe_zone" parent="." index="5"]
+
+collision_layer = 32
+collision_mask = 8
+_sections_unfolded = [ "Collision" ]
+
+[node name="collision_shape_2d" parent="safe_zone" index="0"]
+
+position = Vector2( -896, 640 )
+shape = SubResource( 2 )
+
+[node name="collision_shape_2d_2" parent="safe_zone" index="1"]
+
+position = Vector2( 2816, 640 )
+shape = SubResource( 3 )
 
 
