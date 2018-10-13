@@ -1,14 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://levels/level_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://blocks/block_long_v.tscn" type="PackedScene" id=2]
 [ext_resource path="res://blocks/block_long_h.tscn" type="PackedScene" id=3]
 [ext_resource path="res://blocks/ladder.tscn" type="PackedScene" id=4]
-
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends RigidBody2D
-"
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -41,27 +36,22 @@ position = Vector2( 960, 608 )
 [node name="block_01" parent="buildings/target_building" index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 0, -248 )
-script = SubResource( 1 )
 
 [node name="block_02" parent="buildings/target_building" index="1" instance=ExtResource( 2 )]
 
 position = Vector2( -512, -248 )
-script = SubResource( 1 )
 
 [node name="block_03" parent="buildings/target_building" index="2" instance=ExtResource( 2 )]
 
 position = Vector2( 512, -248 )
-script = SubResource( 1 )
 
 [node name="block_04" parent="buildings/target_building" index="3" instance=ExtResource( 3 )]
 
 position = Vector2( -256, -536 )
-script = SubResource( 1 )
 
 [node name="block_05" parent="buildings/target_building" index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 256, -536 )
-script = SubResource( 1 )
 
 [node name="ladder" parent="buildings/target_building" index="5" instance=ExtResource( 4 )]
 

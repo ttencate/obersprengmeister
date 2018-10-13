@@ -46,7 +46,7 @@ func _zoom_in_tween_completed(object, key):
 
 func _zoom_out_tween_started(object, key):
 	_set_track_player(false)
-	smoothing_enabled = false
 
 func _zoom_out_tween_completed(object, key):
 	emit_signal("zoomed_out_to_overview")
+	smoothing_enabled = false
