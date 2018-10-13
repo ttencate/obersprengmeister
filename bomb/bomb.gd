@@ -1,12 +1,20 @@
-extends RigidBody2D
+extends KinematicBody2D
 
+export(float) var delay = 5
 export(float) var strength = 1000
 
 func _ready():
 	$timer.connect("timeout", self, "explode")
+	$timer.wait_time = delay
 
 func _process(delta):
 	$display.text = '%d' % floor($timer.time_left)
+
+func place(from, direction):
+	global_position = from
+	move_and_collide(direction)
+	collision_layer = 0
+	collision_mask = 0
 
 func explode():
 	var space = get_world_2d().direct_space_state

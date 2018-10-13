@@ -89,30 +89,6 @@ func _find_closest_ladder():
 			closest = ladder
 	return closest
 
-func _process_bomb_placement():
-	var mouse_position = get_viewport().get_mouse_position()
-	var angle = (mouse_position - $ray_cast.global_position).angle()
-	$ray_cast.rotation = angle
-	$ray_cast.force_raycast_update()
-	var can_place_bomb = $ray_cast.is_colliding()
-	var ray_end
-	if can_place_bomb:
-		ray_end = $ray_cast.get_collision_point()
-	else:
-		ray_end = $ray_cast.to_global($ray_cast.cast_to)
-	
-	var points = PoolVector2Array()
-	points.append(Vector2(0, 0))
-	points.append(Vector2((ray_end - $ray_cast.global_position).length(), 0))
-	$ray_cast/bomb_line.points = points
-	$ray_cast/bomb_line.self_modulate = Color(1, 1, 1, 0.5 if can_place_bomb else 0.1)
-	
-	if Input.is_action_just_pressed("place_bomb"):
-		if can_place_bomb:
-			pass # TODO place bomb
-		else:
-			pass # TODO play sound effect
-
 func ladder_entered(ladder):
 	ladders.push_back(ladder)
 
@@ -120,3 +96,32 @@ func ladder_exited(ladder):
 	var index = ladders.find(ladder)
 	if index >= 0:
 		ladders.remove(index)
+
+func _process_bomb_placement():
+	var mouse_position = get_viewport().get_mouse_position()
+	var angle = (mouse_position - $ray_cast.global_position).angle()
+	$ray_cast.rotation = angle
+	$ray_cast.force_raycast_update()
+	var can_place_bomb = $ray_cast.is_colliding()
+	var ray_start = $ray_cast.global_position
+	var ray_end
+	if can_place_bomb:
+		ray_end = $ray_cast.get_collision_point()
+		if ray_end.distance_to(ray_start) < 10:
+			can_place_bomb = false # Inside a wall.
+	else:
+		ray_end = $ray_cast.to_global($ray_cast.cast_to)
+	
+	var points = PoolVector2Array()
+	points.append(Vector2(0, 0))
+	points.append(Vector2((ray_end - ray_start).length(), 0))
+	$ray_cast/bomb_line.points = points
+	$ray_cast/bomb_line.self_modulate = Color(1, 1, 1, 0.5 if can_place_bomb else 0.1)
+	
+	if Input.is_action_just_pressed("place_bomb"):
+		if can_place_bomb:
+			var bomb = preload("res://bomb/bomb.tscn").instance()
+			get_parent().add_child(bomb)
+			bomb.place(ray_start, ray_end - ray_start)
+		else:
+			pass # TODO play sound effect
