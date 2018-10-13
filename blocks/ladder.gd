@@ -23,5 +23,8 @@ func _update_height():
 
 func fade_out():
 	$fade_out_tween.interpolate_property(self, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.6, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	$fade_out_tween.connect("tween_completed", self, "queue_free")
+	$fade_out_tween.connect("tween_completed", self, "_fade_out_completed")
 	$fade_out_tween.start()
+
+func _fade_out_completed(object, key):
+	queue_free()

@@ -84,7 +84,7 @@
          id="stop4644" />
       <stop
          id="stop5266"
-         offset="0.12500006"
+         offset="0.25"
          style="stop-color:#3c2522;stop-opacity:1;" />
       <stop
          style="stop-color:#231614;stop-opacity:1"
@@ -138,9 +138,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5"
-     inkscape:cx="852.10868"
-     inkscape:cy="236.3948"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="743.96333"
+     inkscape:cy="218.66302"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"

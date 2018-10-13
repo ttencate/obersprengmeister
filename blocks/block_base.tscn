@@ -2,7 +2,9 @@
 
 [ext_resource path="res://blocks/block_long.svg" type="Texture" id=1]
 
-[node name="block_base" type="RigidBody2D" index="0"]
+[node name="block_base" type="RigidBody2D" index="0" groups=[
+"blocks",
+]]
 
 input_pickable = false
 collision_layer = 0
