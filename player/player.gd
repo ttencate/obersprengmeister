@@ -26,6 +26,10 @@ func _ready():
 	$ladder_sensor.connect("area_entered", self, "ladder_entered")
 	$ladder_sensor.connect("area_exited", self, "ladder_exited")
 	$bomb.connect("exploded", self, "_bomb_exploded")
+	$bomb.visible = false
+
+func start():
+	$bomb.visible = true
 	$bomb.start()
 
 func _physics_process(delta):
@@ -115,7 +119,13 @@ func ladder_exited(ladder):
 		ladders.remove(index)
 
 func _process_bomb_placement():
-	var mouse_position = get_viewport().get_mouse_position()
+	if not has_node("bomb") or not $bomb.visible:
+		$ray_cast/bomb_line.visible = false
+		return
+	
+	$ray_cast/bomb_line.visible = true
+	
+	var mouse_position = get_global_mouse_position()
 	var angle = (mouse_position - $ray_cast.global_position).angle()
 	$ray_cast.rotation = angle
 	$ray_cast.force_raycast_update()
@@ -148,7 +158,6 @@ func _process_bomb_placement():
 func cower():
 	cowering = true
 	$bomb.queue_free()
-	$ray_cast/bomb_line.visible = false
 
 func _bomb_exploded(bomb):
 	emit_signal("exploded", bomb)

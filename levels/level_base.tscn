@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://levels/level_base.gd" type="Script" id=1]
 [ext_resource path="res://background/ground.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://background/target_2.svg" type="Texture" id=5]
 [ext_resource path="res://background/target_3.svg" type="Texture" id=6]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://background/camera.tscn" type="PackedScene" id=8]
 
 [node name="level_base" type="Node2D" index="0"]
 
@@ -41,7 +42,16 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="player" parent="." index="5" instance=ExtResource( 7 )]
 
-position = Vector2( 960, 768 )
+position = Vector2( 960, 704 )
+
+[node name="remote_transform_2d" type="RemoteTransform2D" parent="player" index="5"]
+
+remote_path = NodePath("../../camera")
+use_global_coordinates = true
+update_position = false
+update_rotation = false
+update_scale = false
+_sections_unfolded = [ "Update" ]
 
 [node name="explosions" type="Node2D" parent="." index="6"]
 
@@ -61,5 +71,10 @@ audio_bus_name = "Master"
 [node name="collision_shape_2d" type="CollisionShape2D" parent="safe_zone" index="0"]
 
 [node name="collision_shape_2d_2" type="CollisionShape2D" parent="safe_zone" index="1"]
+
+[node name="camera" parent="." index="8" instance=ExtResource( 8 )]
+
+position = Vector2( 960, 704 )
+remote_transform_node = NodePath("../player/remote_transform_2d")
 
 
