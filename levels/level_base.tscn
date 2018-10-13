@@ -3,7 +3,7 @@
 [ext_resource path="res://background/ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 
-[node name="level_base" type="Node2D" index="0"]
+[node name="level_base" type="Node2D"]
 
 [node name="ground" parent="." index="0" instance=ExtResource( 1 )]
 

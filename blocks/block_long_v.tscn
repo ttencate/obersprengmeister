@@ -21,6 +21,8 @@ height = 31.9998
 
 [node name="block_long_v" index="0" instance=ExtResource( 1 )]
 
+collision_layer = 1
+
 [node name="sprite" parent="." index="0"]
 
 self_modulate = Color( 1, 0.501961, 0.501961, 1 )

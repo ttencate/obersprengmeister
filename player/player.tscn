@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player.svg" type="Texture" id=2]
@@ -10,16 +10,29 @@ custom_solver_bias = 0.0
 radius = 32.0
 height = 64.0
 
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 64 )
+
 [node name="player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 8
+collision_mask = 6
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-acceleration = 2048
-deceleration = 2048
+_sections_unfolded = [ "Collision" ]
+walk_acceleration = 2048
+walk_deceleration = 2048
+air_acceleration = 512
+air_deceleration = 512
+climb_acceleration = 1024
+climb_deceleration = 1024
 walk_speed = 512
+climb_speed = 256
+ladder_center_speed = 256
+gravity = 500
 
 [node name="sprite" type="Sprite" parent="." index="0"]
 
@@ -38,7 +51,7 @@ position = Vector2( 0, -64 )
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 256, 0 )
-collision_mask = 1
+collision_mask = 3
 _sections_unfolded = [ "Transform" ]
 
 [node name="bomb_line" type="Line2D" parent="ray_cast" index="0"]
@@ -52,5 +65,23 @@ texture_mode = 1
 sharp_limit = 2.0
 round_precision = 8
 _sections_unfolded = [ "Fill", "Transform", "Visibility" ]
+
+[node name="ladder_sensor" type="Area2D" parent="." index="3"]
+
+position = Vector2( 0, -64 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="ladder_sensor" index="0"]
+
+shape = SubResource( 2 )
 
 
