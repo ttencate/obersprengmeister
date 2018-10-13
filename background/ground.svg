@@ -48,8 +48,16 @@
          style="stop-color:#8bc34a;stop-opacity:1;" />
       <stop
          id="stop4701"
-         offset="0.76267004"
+         offset="0.74057293"
          style="stop-color:#8bc34a;stop-opacity:1;" />
+      <stop
+         style="stop-color:#5a7e30;stop-opacity:1;"
+         offset="0.90180576"
+         id="stop7453" />
+      <stop
+         id="stop7455"
+         offset="0.94323778"
+         style="stop-color:#466125;stop-opacity:1;" />
       <stop
          style="stop-color:#202b11;stop-opacity:1"
          offset="1"
@@ -98,7 +106,7 @@
        x1="237.06667"
        y1="9.1333132"
        x2="237.06667"
-       y2="195.39998"
+       y2="178.46664"
        gradientUnits="userSpaceOnUse"
        gradientTransform="translate(0,2.1166724)" />
   </defs>
@@ -109,9 +117,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="378.58424"
-     inkscape:cy="546.66804"
+     inkscape:zoom="5.6568542"
+     inkscape:cx="922.43194"
+     inkscape:cy="291.37903"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -121,7 +129,8 @@
      inkscape:window-x="0"
      inkscape:window-y="38"
      inkscape:window-maximized="0"
-     inkscape:snap-page="false">
+     inkscape:snap-page="false"
+     inkscape:snap-global="false">
     <inkscape:grid
        type="xygrid"
        id="grid4485"
