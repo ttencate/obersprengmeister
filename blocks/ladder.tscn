@@ -29,6 +29,7 @@ height = 256.0
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="0"]
 
+visible = false
 position = Vector2( 0, -128 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]

@@ -44,6 +44,7 @@ _sections_unfolded = [ "Region", "Transform" ]
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="1"]
 
+visible = false
 position = Vector2( 0, -64 )
 shape = SubResource( 1 )
 
@@ -75,6 +76,7 @@ delay = 30.0
 
 [node name="ladder_sensor" type="Area2D" parent="." index="4"]
 
+visible = false
 position = Vector2( 0, -64 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )

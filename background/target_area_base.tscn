@@ -28,8 +28,10 @@ target_parent = NodePath("../buildings/target_building")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="0"]
 
+visible = false
 position = Vector2( 0, -1728 )
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="line_sprite" type="Sprite" parent="." index="1"]
 
