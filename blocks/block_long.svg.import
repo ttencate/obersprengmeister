@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/block_02.svg-094bf770bdb25ba06d07b73bb5d0561b.stex"
+path="res://.import/block_long.svg-d98f9f738110ce4c4731433ab9fac473.stex"
 
 [deps]
 
-source_file="res://blocks/block_02.svg"
-dest_files=[ "res://.import/block_02.svg-094bf770bdb25ba06d07b73bb5d0561b.stex" ]
+source_file="res://blocks/block_long.svg"
+dest_files=[ "res://.import/block_long.svg-d98f9f738110ce4c4731433ab9fac473.stex" ]
 
 [params]
 

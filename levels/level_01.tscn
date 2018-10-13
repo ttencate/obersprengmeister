@@ -1,16 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://levels/level_base.tscn" type="PackedScene" id=1]
-[ext_resource path="res://blocks/block_01.tscn" type="PackedScene" id=2]
-[ext_resource path="res://blocks/block_02.tscn" type="PackedScene" id=3]
-[ext_resource path="res://bomb/bomb.tscn" type="PackedScene" id=4]
+[ext_resource path="res://blocks/block_long_v.tscn" type="PackedScene" id=2]
+[ext_resource path="res://blocks/block_long_h.tscn" type="PackedScene" id=3]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends RigidBody2D
 "
 
-[node name="level_base" index="0" instance=ExtResource( 1 )]
+[node name="level_01" index="0" instance=ExtResource( 1 )]
 
 [node name="ground" parent="." index="0"]
 
@@ -19,43 +18,32 @@ editor/display_folded = true
 [node name="block_01" parent="buildings/target_building" index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 0, -248 )
-script = SubResource( 2 )
+script = SubResource( 1 )
 
 [node name="block_02" parent="buildings/target_building" index="1" instance=ExtResource( 2 )]
 
 position = Vector2( -512, -248 )
-script = SubResource( 2 )
+script = SubResource( 1 )
 
 [node name="block_03" parent="buildings/target_building" index="2" instance=ExtResource( 2 )]
 
 position = Vector2( 512, -248 )
-script = SubResource( 2 )
+script = SubResource( 1 )
 
 [node name="block_04" parent="buildings/target_building" index="3" instance=ExtResource( 3 )]
 
-position = Vector2( -256, -568 )
-script = SubResource( 2 )
+position = Vector2( -256, -536 )
+script = SubResource( 1 )
 
 [node name="block_05" parent="buildings/target_building" index="4" instance=ExtResource( 3 )]
 
-position = Vector2( 256, -568 )
-script = SubResource( 2 )
+position = Vector2( 256, -536 )
+script = SubResource( 1 )
 
 [node name="bombs" type="Node2D" parent="." index="2"]
 
-[node name="bomb" parent="bombs" index="0" instance=ExtResource( 4 )]
+[node name="player" parent="." index="3"]
 
-position = Vector2( 320, 320 )
-strength = 1000
-
-[node name="bomb_2" parent="bombs" index="1" instance=ExtResource( 4 )]
-
-position = Vector2( 1600, 320 )
-strength = 1000
-
-[node name="bomb_3" parent="bombs" index="2" instance=ExtResource( 4 )]
-
-position = Vector2( 832, 320 )
-strength = 1000
+position = Vector2( 1088, 768 )
 
 

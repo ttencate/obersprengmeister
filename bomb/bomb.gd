@@ -20,7 +20,6 @@ func explode():
 				var offset = collider.to_local(result.position)
 				var impulse = strength / num_rays * global_direction
 				collider.apply_impulse(offset, impulse)
-				print(offset, impulse)
 	
 	var explosion = preload("res://bomb/explosion.tscn").instance()
 	explosion.position = self.position
