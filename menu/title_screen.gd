@@ -12,3 +12,8 @@ func _unhandled_input(event):
 		leaving = true
 		$animation_player.play("leave")
 		emit_signal("dismissed")
+		
+		var explosion = preload("res://bomb/explosion.tscn").instance()
+		explosion.position = Vector2(960, 540)
+		explosion.scale = Vector2(1.5, 1.5)
+		get_parent().add_child(explosion)

@@ -23,4 +23,3 @@ func _ready():
 	
 	$sound.stream = SOUNDS[randi() % SOUNDS.size()]
 	$sound.pitch_scale = rand_range(0.9, 1.1)
-	$sound.play()
