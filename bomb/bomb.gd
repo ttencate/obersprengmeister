@@ -23,10 +23,10 @@ func place(position, normal, parent):
 
 func explode():
 	var space = get_world_2d().direct_space_state
-	var num_rays = 24
+	var num_rays = 48
 	for i in range(0, num_rays):
 		var global_direction = Vector2(1, 0).rotated(2 * PI * i / num_rays)
-		var mask = 1 | 2
+		var mask = 1 | 2 | 8 # walls, floors, player
 		var result = space.intersect_ray(global_position, global_position + 1920 * global_direction, [self], mask)
 		if result.has("collider"):
 			var collider = result.collider
@@ -34,6 +34,8 @@ func explode():
 				var offset = collider.to_local(result.position)
 				var impulse = strength / num_rays * global_direction
 				collider.apply_impulse(offset, impulse)
+			if collider.has_method("take_damage") and result.position.distance_to(collider.global_position) <= 256:
+				collider.take_damage(self)
 	
 	emit_signal("exploded", self)
 	

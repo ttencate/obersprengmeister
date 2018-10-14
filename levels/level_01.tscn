@@ -8,12 +8,12 @@
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 1024, 128 )
+extents = Vector2( 1216, 128 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 1024, 128 )
+extents = Vector2( 1216, 128 )
 
 [node name="level_01" index="0" instance=ExtResource( 1 )]
 

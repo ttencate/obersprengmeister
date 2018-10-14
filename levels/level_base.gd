@@ -1,13 +1,16 @@
 extends Node2D
 
+signal completed
+
 var any_bombs_placed = false
 var stars = 0
 
 var active_bombs = []
+var is_completed = false
 
 func _ready():
 	$player.connect("placed_bomb", self, "_player_placed_bomb")
-	$player.connect("exploded", self, "_player_exploded")
+	$player.connect("died", self, "_player_died")
 	$safe_zone.connect("body_entered", self, "_safe_zone_entered")
 	$target_area_1.connect("achieved", self, "_target_achieved")
 	$target_area_2.connect("achieved", self, "_target_achieved")
@@ -18,6 +21,9 @@ func _ready():
 	
 	for block in $buildings.get_children():
 		block.connect("sleeping_state_changed", self, "_block_sleeping_state_changed")
+
+func _enter_tree():
+	$camera.make_current()
 
 func _player_placed_bomb(bomb):
 	any_bombs_placed = true
@@ -34,11 +40,13 @@ func _bomb_exploded(bomb):
 	$camera.shake()
 	
 	active_bombs.erase(bomb)
+	
+	if has_node("player") and $player.takes_input:
+		$player.cower()
 
-func _player_exploded(bomb):
-	_bomb_exploded(bomb)
-	$player.queue_free()
-	# TODO lose screen
+func _player_died():
+	pass
+	# call_deferred("_check_completion")
 
 func _safe_zone_entered(object):
 	if object != $player:
@@ -69,15 +77,29 @@ func _safe_zone_entered(object):
 			bomb.start()
 
 func _block_sleeping_state_changed():
-	if not any_bombs_placed or active_bombs.size() > 0:
-		return
-	
 	for block in $buildings.get_children():
-		if not block.sleeping:
+		if block is RigidBody2D and not block.sleeping:
 			return
 	
-	print("level completed")
-	# TODO show end screen
+	_check_completion()
+
+func _check_completion():
+	if is_completed:
+		return
+	
+	var survived = not $player.dead
+	
+	if survived and not any_bombs_placed or active_bombs.size() > 0:
+		return
+	
+	var damage = 0
+	for block in $buildings.get_children():
+		if block.has_method("is_target_block") and not block.is_target_block():
+			damage += block.civilian_damage()
+	
+	is_completed = true
+	print("level completed with %d stars, $%d damage, survival: %s" % [stars, damage, survived])
+	emit_signal("completed", stars, damage, survived)
 
 func _target_achieved(stars):
 	if stars > self.stars:

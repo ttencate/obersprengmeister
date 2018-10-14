@@ -13,14 +13,15 @@ export(float) var gravity = 1000
 export(float) var jump_speed = 384
 
 signal placed_bomb
-signal exploded
+signal died
 
 enum State { WALKING, CLIMBING }
 
 var state = State.WALKING
 var velocity = Vector2(0, 0)
 var ladders = []
-var cowering = false
+var takes_input = true
+var dead = false
 
 func _ready():
 	$ladder_sensor.connect("area_entered", self, "ladder_entered")
@@ -33,8 +34,8 @@ func start():
 	pass
 
 func _physics_process(delta):
-	var direction = Vector2() if cowering else _input_direction()
-	var jumping = not cowering and _input_jumping()
+	var direction = _input_direction() if takes_input else Vector2()
+	var jumping = _input_jumping() if takes_input else false
 
 	_process_movement(direction, jumping, delta)
 	_process_bomb_placement()
@@ -153,7 +154,7 @@ func _process_bomb_placement():
 	$ray_cast/bomb_line.points = points
 	$ray_cast/bomb_line.self_modulate = Color(1, 1, 1, 0.5 if can_place_bomb else 0.1)
 	
-	if not cowering and Input.is_action_just_pressed("place_bomb"):
+	if takes_input and Input.is_action_just_pressed("place_bomb"):
 		if can_place_bomb:
 			var bomb = preload("res://bomb/bomb.tscn").instance()
 			bomb.place(ray_end, $ray_cast.get_collision_normal(), $ray_cast.get_collider())
@@ -164,8 +165,17 @@ func _process_bomb_placement():
 			pass # TODO play sound effect
 
 func cower():
-	cowering = true
+	takes_input = false
 	$bomb.queue_free()
+	collision_layer = 0
 
+# Not currently used.
 func _bomb_exploded(bomb):
-	emit_signal("exploded", bomb)
+	take_damage(bomb)
+
+func take_damage(bomb):
+	print("player exploded")
+	visible = false
+	dead = true
+	takes_input = false
+	emit_signal("died")
