@@ -7,13 +7,13 @@ signal exploded
 
 func _ready():
 	$timer.connect("timeout", self, "explode")
-	$timer.wait_time = delay
 
 func start():
+	$timer.wait_time = delay
 	$timer.start()
 
 func _process(delta):
-	$display.text = '%d' % ceil($timer.time_left)
+	$display.text = '%d' % ceil(time_left())
 
 func place(position, normal, parent):
 	parent.add_child(self)
@@ -40,9 +40,9 @@ func explode():
 	queue_free()
 
 func time_left():
-	return $timer.time_left
+	return delay if $timer.is_stopped() else $timer.time_left
 
 func _set_delay(d):
+	print("set delay to ", d)
+	d = clamp(d, 1, 99)
 	delay = d
-	if has_node("timer"):
-		$timer.wait_time = d

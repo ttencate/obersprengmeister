@@ -26,11 +26,11 @@ func _ready():
 	$ladder_sensor.connect("area_entered", self, "ladder_entered")
 	$ladder_sensor.connect("area_exited", self, "ladder_exited")
 	$bomb.connect("exploded", self, "_bomb_exploded")
-	$bomb.visible = false
+	# $bomb.visible = false
+	$bomb.delay = 30
 
 func start():
-	$bomb.visible = true
-	$bomb.start()
+	pass
 
 func _physics_process(delta):
 	var direction = Vector2() if cowering else _input_direction()
@@ -118,6 +118,14 @@ func ladder_exited(ladder):
 	if index >= 0:
 		ladders.remove(index)
 
+func _unhandled_input(event):
+	if not has_node("bomb") or not $bomb.visible:
+		return
+	if Input.is_action_pressed("decrement_timer"):
+		$bomb.delay -= 1
+	elif Input.is_action_pressed("increment_timer"):
+		$bomb.delay += 1
+
 func _process_bomb_placement():
 	if not has_node("bomb") or not $bomb.visible:
 		$ray_cast/bomb_line.visible = false
@@ -149,7 +157,7 @@ func _process_bomb_placement():
 		if can_place_bomb:
 			var bomb = preload("res://bomb/bomb.tscn").instance()
 			bomb.place(ray_end, $ray_cast.get_collision_normal(), $ray_cast.get_collider())
-			bomb.delay = $bomb.time_left()
+			bomb.delay = $bomb.delay
 			bomb.start()
 			emit_signal("placed_bomb", bomb)
 		else:

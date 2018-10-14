@@ -3,17 +3,17 @@
 [ext_resource path="res://bomb/bomb.gd" type="Script" id=1]
 [ext_resource path="res://bomb/bomb.svg" type="Texture" id=2]
 
-[sub_resource type="DynamicFontData" id=3]
+[sub_resource type="DynamicFontData" id=1]
 
 hinting = 2
 font_path = "res://fonts/LCDMonoWinTT/LCDMB___.TTF"
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 
 size = 21
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 3 )
+font_data = SubResource( 1 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
 [node name="bomb" type="Node2D" index="0" groups=[
@@ -48,7 +48,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "30"
 align = 2
