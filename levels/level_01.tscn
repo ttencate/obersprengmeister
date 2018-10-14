@@ -5,12 +5,12 @@
 [ext_resource path="res://blocks/block_long_v.tscn" type="PackedScene" id=3]
 [ext_resource path="res://blocks/block_medium_h.tscn" type="PackedScene" id=4]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 1216, 128 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 1216, 128 )
@@ -34,46 +34,40 @@ position = Vector2( 960, 576 )
 
 position = Vector2( 960, 640 )
 
+[node name="collision_shape_2d" parent="safe_zone" index="0"]
+
+position = Vector2( -896, 640 )
+shape = SubResource( 1 )
+
+[node name="collision_shape_2d_2" parent="safe_zone" index="1"]
+
+position = Vector2( 2816, 640 )
+shape = SubResource( 2 )
+
 [node name="block_01" parent="buildings" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 1109, 537 )
 rotation = -0.523598
 color = Color( 0.12549, 0.25098, 1, 1 )
-is_target = true
 
 [node name="block_02" parent="buildings" index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 811, 537 )
 rotation = 0.523598
 color = Color( 0.12549, 0.25098, 1, 1 )
-is_target = true
 
 [node name="block_medium_h" parent="buildings" index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 960, 736 )
 color = Color( 0.25098, 1, 0.12549, 1 )
-is_target = true
 
-[node name="player" parent="." index="5"]
+[node name="player" parent="." index="6"]
 
 position = Vector2( 960, 704 )
-_sections_unfolded = [ "Collision", "Transform" ]
-
-[node name="safe_zone" parent="." index="7"]
-
-collision_layer = 32
-collision_mask = 8
-_sections_unfolded = [ "Collision" ]
-
-[node name="collision_shape_2d" parent="safe_zone" index="0"]
-
-position = Vector2( -896, 640 )
-shape = SubResource( 2 )
-
-[node name="collision_shape_2d_2" parent="safe_zone" index="1"]
-
-position = Vector2( 2816, 640 )
-shape = SubResource( 3 )
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+speech = "Hi! I'm the chief demolitions expert, the OBERSPRENGMEISTER.
+Let's blow up this... lame tent thing. Get it below the topmost line.
+Place a bomb or two, then move to a safe distance."
 
 [node name="camera" parent="." index="8"]
 

@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
-[ext_resource path="res://menu/title_screen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://menu/game_over.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sounds/music.ogg" type="AudioStream" id=4]
+[ext_resource path="res://menu/round_button.svg" type="Texture" id=2]
+[ext_resource path="res://menu/round_button_pressed.svg" type="Texture" id=3]
+[ext_resource path="res://menu/round_button_hover.svg" type="Texture" id=4]
+[ext_resource path="res://menu/round_button_disabled.svg" type="Texture" id=5]
+[ext_resource path="res://menu/arrow_left.svg" type="Texture" id=6]
+[ext_resource path="res://menu/restart.svg" type="Texture" id=7]
+[ext_resource path="res://menu/title_screen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://menu/game_over.tscn" type="PackedScene" id=9]
+[ext_resource path="res://sounds/music.ogg" type="AudioStream" id=10]
 
 [node name="main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 960.0 ]
+}
 
 [node name="level" type="Node2D" parent="." index="0"]
 
@@ -19,14 +28,118 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="title_screen" parent="hud" index="0" instance=ExtResource( 2 )]
+[node name="buttons" type="Node2D" parent="hud" index="0"]
 
-[node name="game_over" parent="hud" index="1" instance=ExtResource( 3 )]
+[node name="previous_level_button" type="TextureButton" parent="hud/buttons" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 164.0
+margin_bottom = 164.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 5 )
+_sections_unfolded = [ "Textures" ]
+
+[node name="icon" type="Sprite" parent="hud/buttons/previous_level_button" index="0"]
+
+position = Vector2( 66, 66 )
+texture = ExtResource( 6 )
+
+[node name="next_level_button" type="TextureButton" parent="hud/buttons" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1760.0
+margin_top = 32.0
+margin_right = 1892.0
+margin_bottom = 164.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 5 )
+_sections_unfolded = [ "Textures" ]
+
+[node name="icon" type="Sprite" parent="hud/buttons/next_level_button" index="0"]
+
+position = Vector2( 66, 66 )
+texture = ExtResource( 6 )
+flip_h = true
+_sections_unfolded = [ "Animation", "Offset", "Region" ]
+
+[node name="restart_button" type="TextureButton" parent="hud/buttons" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 896.0
+margin_top = 32.0
+margin_right = 1028.0
+margin_bottom = 164.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 5 )
+
+[node name="icon" type="Sprite" parent="hud/buttons/restart_button" index="0"]
+
+position = Vector2( 66, 66 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Animation", "Offset", "Region" ]
+
+[node name="title_screen" parent="hud" index="1" instance=ExtResource( 8 )]
+
+visible = false
+
+[node name="game_over" parent="hud" index="2" instance=ExtResource( 9 )]
+
+visible = false
 
 [node name="music" type="AudioStreamPlayer" parent="." index="2"]
 
-stream = ExtResource( 4 )
-volume_db = -6.0
+stream = ExtResource( 10 )
+volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0

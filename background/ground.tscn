@@ -21,16 +21,15 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="ground" type="Sprite" parent="." index="0"]
 
-position = Vector2( -2880, -768 )
+position = Vector2( -2848, -64 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 5760, 1080 )
-_sections_unfolded = [ "Transform" ]
+region_rect = Rect2( 0, 2, 5760, 376 )
+_sections_unfolded = [ "Region", "Transform" ]
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="1"]
 
-visible = false
 position = Vector2( 0, 192 )
 shape = SubResource( 1 )
 

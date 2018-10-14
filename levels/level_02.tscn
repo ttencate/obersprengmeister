@@ -29,35 +29,40 @@ position = Vector2( 960, 512 )
 
 position = Vector2( 960, 608 )
 
+[node name="collision_shape_2d" parent="safe_zone" index="0"]
+
+position = Vector2( -896, 640 )
+shape = SubResource( 1 )
+
+[node name="collision_shape_2d_2" parent="safe_zone" index="1"]
+
+position = Vector2( 2816, 640 )
+shape = SubResource( 2 )
+
 [node name="block_01" parent="buildings" index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 960, 512 )
 color = Color( 0.12549, 0.25098, 1, 1 )
-is_target = true
 
 [node name="block_02" parent="buildings" index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 448, 512 )
 color = Color( 0.12549, 0.25098, 1, 1 )
-is_target = true
 
 [node name="block_03" parent="buildings" index="2" instance=ExtResource( 2 )]
 
 position = Vector2( 1472, 512 )
 color = Color( 0.12549, 0.25098, 1, 1 )
-is_target = true
 
 [node name="block_04" parent="buildings" index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 704, 224 )
 color = Color( 1, 0.121569, 0, 1 )
-is_target = true
 
 [node name="block_05" parent="buildings" index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 1216, 224 )
 color = Color( 1, 0.12549, 0, 1 )
-is_target = true
 
 [node name="ladder" parent="buildings" index="5" instance=ExtResource( 4 )]
 
@@ -74,24 +79,10 @@ height = 640.0
 position = Vector2( 320, 768 )
 height = 640.0
 
-[node name="player" parent="." index="5"]
+[node name="player" parent="." index="6"]
 
 position = Vector2( 800, 768 )
-
-[node name="safe_zone" parent="." index="7"]
-
-collision_layer = 32
-collision_mask = 8
-_sections_unfolded = [ "Collision" ]
-
-[node name="collision_shape_2d" parent="safe_zone" index="0"]
-
-position = Vector2( -896, 640 )
-shape = SubResource( 1 )
-
-[node name="collision_shape_2d_2" parent="safe_zone" index="1"]
-
-position = Vector2( 2816, 640 )
-shape = SubResource( 2 )
+speech = "This one will take a bit more explosive power.
+Remember I can walk around on the building if needed."
 
 

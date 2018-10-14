@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="239.99998"
+   height="183.99956"
+   viewBox="0 0 63.499992 48.683216"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 2405546, 2018-03-11"
+   sodipodi:docname="speech_bubble.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="121.13774"
+     inkscape:cy="86.870701"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1916"
+     inkscape:window-height="1160"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
+     inkscape:window-maximized="0"
+     fit-margin-top="2"
+     fit-margin-left="2"
+     fit-margin-right="2"
+     fit-margin-bottom="2"
+     inkscape:snap-bbox="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-global="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4485"
+       empspacing="4"
+       spacingx="2.1166666"
+       spacingy="2.1166666"
+       originx="-1.0583332"
+       originy="1.0582141" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-1.0583328,-249.37499)">
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:0.95685281;stroke:#000000;stroke-width:1.05833328;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.99968505;stroke-opacity:1"
+       d="M 6.3500011,250.43332 H 59.266662 c 2.345268,0 4.233335,1.88807 4.233335,4.23333 v 27.51667 c 0,2.34527 -1.888067,4.23333 -4.233335,4.23333 H 16.870079 L 4.2333327,296.99999 8.3575446,286.41665 H 6.3500011 c -2.3452676,0 -4.233335,-1.88806 -4.233335,-4.23333 v -27.51667 c 0,-2.34526 1.8880674,-4.23333 4.233335,-4.23333 z"
+       id="rect2737"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ssssscccssss" />
+  </g>
+</svg>

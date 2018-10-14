@@ -1,17 +1,20 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://levels/level_base.gd" type="Script" id=1]
-[ext_resource path="res://background/ground.tscn" type="PackedScene" id=2]
-[ext_resource path="res://background/target_area_base.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sounds/stars_1.wav" type="AudioStream" id=4]
-[ext_resource path="res://background/target_1.svg" type="Texture" id=5]
-[ext_resource path="res://sounds/stars_2.wav" type="AudioStream" id=6]
-[ext_resource path="res://background/target_2.svg" type="Texture" id=7]
-[ext_resource path="res://sounds/stars_3.wav" type="AudioStream" id=8]
-[ext_resource path="res://background/target_3.svg" type="Texture" id=9]
-[ext_resource path="res://player/player.tscn" type="PackedScene" id=10]
-[ext_resource path="res://background/camera.tscn" type="PackedScene" id=11]
-[ext_resource path="res://sounds/alarm.wav" type="AudioStream" id=12]
+[ext_resource path="res://background/sky.svg" type="Texture" id=2]
+[ext_resource path="res://background/hills_2.svg" type="Texture" id=3]
+[ext_resource path="res://background/hills_1.svg" type="Texture" id=4]
+[ext_resource path="res://background/ground.tscn" type="PackedScene" id=5]
+[ext_resource path="res://background/target_area_base.tscn" type="PackedScene" id=6]
+[ext_resource path="res://sounds/stars_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://background/target_1.svg" type="Texture" id=8]
+[ext_resource path="res://sounds/stars_2.wav" type="AudioStream" id=9]
+[ext_resource path="res://background/target_2.svg" type="Texture" id=10]
+[ext_resource path="res://sounds/stars_3.wav" type="AudioStream" id=11]
+[ext_resource path="res://background/target_3.svg" type="Texture" id=12]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=13]
+[ext_resource path="res://background/camera.tscn" type="PackedScene" id=14]
+[ext_resource path="res://sounds/alarm.wav" type="AudioStream" id=15]
 
 [sub_resource type="Animation" id=1]
 
@@ -37,30 +40,88 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 _sections_unfolded = [ "Visibility" ]
 
-[node name="ground" parent="." index="0" instance=ExtResource( 2 )]
+[node name="parallax_background" type="ParallaxBackground" parent="." index="0"]
 
-[node name="target_area_1" parent="." index="1" instance=ExtResource( 3 )]
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( -960, -540 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
+_sections_unfolded = [ "Scroll" ]
+
+[node name="parallax_layer_2" type="ParallaxLayer" parent="parallax_background" index="0"]
+
+motion_scale = Vector2( 0, 0 )
+motion_offset = Vector2( -960, -540 )
+motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="sky" type="Sprite" parent="parallax_background/parallax_layer_2" index="0"]
+
+texture = ExtResource( 2 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="parallax_layer" type="ParallaxLayer" parent="parallax_background" index="1"]
+
+motion_scale = Vector2( 0.5, 0 )
+motion_offset = Vector2( -960, -540 )
+motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="hills_2" type="Sprite" parent="parallax_background/parallax_layer" index="0"]
+
+position = Vector2( 960, 608 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 2, 11520, 206 )
+_sections_unfolded = [ "Region" ]
+
+[node name="parallax_layer_3" type="ParallaxLayer" parent="parallax_background" index="2"]
+
+motion_scale = Vector2( 0.75, 0 )
+motion_offset = Vector2( -960, -540 )
+motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="hills_1" type="Sprite" parent="parallax_background/parallax_layer_3" index="0"]
+
+position = Vector2( 960, 832 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 2, 11520, 467 )
+_sections_unfolded = [ "Region" ]
+
+[node name="ground" parent="." index="1" instance=ExtResource( 5 )]
+
+[node name="target_area_1" parent="." index="2" instance=ExtResource( 6 )]
 
 position = Vector2( 960, 192 )
-sound = ExtResource( 4 )
-stars_texture = ExtResource( 5 )
+sound = ExtResource( 7 )
+stars_texture = ExtResource( 8 )
 stars = 1
 
-[node name="target_area_2" parent="." index="2" instance=ExtResource( 3 )]
+[node name="target_area_2" parent="." index="3" instance=ExtResource( 6 )]
 
 position = Vector2( 960, 384 )
-sound = ExtResource( 6 )
-stars_texture = ExtResource( 7 )
+sound = ExtResource( 9 )
+stars_texture = ExtResource( 10 )
 stars = 2
 
-[node name="target_area_3" parent="." index="3" instance=ExtResource( 3 )]
+[node name="target_area_3" parent="." index="4" instance=ExtResource( 6 )]
 
 position = Vector2( 960, 576 )
-sound = ExtResource( 8 )
-stars_texture = ExtResource( 9 )
+sound = ExtResource( 11 )
+stars_texture = ExtResource( 12 )
 stars = 3
 
-[node name="safe_zone" type="Area2D" parent="." index="4"]
+[node name="safe_zone" type="Area2D" parent="." index="5"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -78,12 +139,12 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="collision_shape_2d_2" type="CollisionShape2D" parent="safe_zone" index="1"]
 
-[node name="buildings" type="Node2D" parent="." index="5"]
+[node name="buildings" type="Node2D" parent="." index="6"]
 
 z_index = 100
 _sections_unfolded = [ "Z Index" ]
 
-[node name="player" parent="." index="6" instance=ExtResource( 10 )]
+[node name="player" parent="." index="7" instance=ExtResource( 13 )]
 
 position = Vector2( 960, 768 )
 z_index = 200
@@ -98,25 +159,25 @@ update_rotation = false
 update_scale = false
 _sections_unfolded = [ "Update" ]
 
-[node name="explosions" type="Node2D" parent="." index="7"]
+[node name="explosions" type="Node2D" parent="." index="8"]
 
 position = Vector2( 960, 768 )
 z_index = 300
 _sections_unfolded = [ "Z Index" ]
 
-[node name="camera" parent="." index="8" instance=ExtResource( 11 )]
+[node name="camera" parent="." index="9" instance=ExtResource( 14 )]
 
 position = Vector2( 960, 704 )
 remote_transform_node = NodePath("../player/remote_transform_2d")
 
-[node name="check_completion_timer" type="Timer" parent="." index="9"]
+[node name="check_completion_timer" type="Timer" parent="." index="10"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = true
 
-[node name="animation_player" type="AnimationPlayer" parent="." index="10"]
+[node name="animation_player" type="AnimationPlayer" parent="." index="11"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -126,10 +187,10 @@ playback_speed = 1.0
 anims/enter = SubResource( 1 )
 blend_times = [  ]
 
-[node name="alarm" type="AudioStreamPlayer2D" parent="." index="11"]
+[node name="alarm" type="AudioStreamPlayer2D" parent="." index="12"]
 
-stream = ExtResource( 12 )
-volume_db = 0.0
+stream = ExtResource( 15 )
+volume_db = -4.0
 pitch_scale = 1.0
 autoplay = false
 max_distance = 2000.0

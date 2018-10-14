@@ -288,7 +288,7 @@ blend_times = [  ]
 [node name="win_sound" type="AudioStreamPlayer" parent="." index="7"]
 
 stream = ExtResource( 8 )
-volume_db = -5.0
+volume_db = -6.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
@@ -297,7 +297,7 @@ bus = "Master"
 [node name="lose_sound" type="AudioStreamPlayer" parent="." index="8"]
 
 stream = ExtResource( 9 )
-volume_db = -5.0
+volume_db = -6.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0

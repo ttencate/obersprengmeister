@@ -109,4 +109,8 @@ is_target = false
 position = Vector2( 1440, 768 )
 height = 1024.0
 
+[node name="player" parent="." index="6"]
+
+speech = "Who built this thing?! No wonder they want it blown up."
+
 

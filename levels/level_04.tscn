@@ -153,4 +153,9 @@ color = Color( 0, 0.2, 1, 1 )
 position = Vector2( 1568, 768 )
 height = 1024.0
 
+[node name="player" parent="." index="6"]
+
+speech = "You can't just blow everything over with brute force.
+Think carefully about how blocks will fall."
+
 

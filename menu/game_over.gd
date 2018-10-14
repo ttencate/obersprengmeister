@@ -26,12 +26,18 @@ func init(stars, damage, survived, has_next_level):
 		outcome = "Not Enough Boom"
 		explanation = "It may have looked spectacular, but the building didn't get leveled sufficiently. Try to use more explosives, or place them better!"
 	else:
-		outcome = "FLATTENED!"
-		if has_next_level:
-			explanation = "You totally blew it. And that's a good thing!"
+		if stars == 1:
+			outcome = "Kaboom"
+			explanation = "Nothing but a pile of rubble remains."
+		elif stars == 2:
+			outcome = "That Blew Up"
+			explanation = "Making the best of an explosive situation."
 		else:
-			explanation = "Congratulations! You beat all the levels!"
+			outcome = "FLATTENED!"
+			explanation = "You totally blew it. And that's a good thing!"
 		success = true
+		if not has_next_level:
+			explanation = "Congratulations! You beat all the levels!"
 	
 	var star_sprites = $stars.get_children()
 	for i in range(1, 4):

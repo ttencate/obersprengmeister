@@ -11,6 +11,7 @@ export(float) var climb_speed = 256
 export(float) var ladder_center_speed = 256
 export(float) var gravity = 1000
 export(float) var jump_speed = 384
+export(String, MULTILINE) var speech = ""
 
 signal placed_bomb
 signal died
@@ -24,6 +25,7 @@ var takes_input = true
 var immortal = false
 var cowering = false
 var dead = false
+var speech_queue = []
 
 onready var bomb = find_node("bomb")
 
@@ -33,9 +35,21 @@ func _ready():
 	bomb.connect("exploded", self, "_bomb_exploded")
 	# bomb.visible = false
 	bomb.delay = 30
+	
+	$speech_bubble.hide()
+	for line in speech.split("\n"):
+		if line != "":
+			speech_queue.push_back(line)
+	$speech_bubble/animation_player.play("wait")
 
 func start():
 	pass
+
+func _next_speech():
+	if speech_queue.empty():
+		return
+	$speech_bubble/label.text = speech_queue.pop_front()
+	$speech_bubble/animation_player.play("show")
 
 func _physics_process(delta):
 	var direction = _input_direction() if takes_input else Vector2()
