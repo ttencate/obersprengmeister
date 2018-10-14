@@ -26,6 +26,7 @@ func _ready():
 			block.connect("sleeping_state_changed", self, "_block_sleeping_state_changed")
 
 func _enter_tree():
+	$animation_player.play("enter")
 	$camera.make_current()
 
 func _player_placed_bomb(bomb):

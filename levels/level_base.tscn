@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/level_base.gd" type="Script" id=1]
 [ext_resource path="res://background/ground.tscn" type="PackedScene" id=2]
@@ -9,9 +9,29 @@
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://background/camera.tscn" type="PackedScene" id=8]
 
-[node name="level_base" type="Node2D"]
+[sub_resource type="Animation" id=1]
+
+resource_name = "enter"
+length = 0.6
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( -2.07133, -2.07133 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="level_base" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Visibility" ]
 
 [node name="ground" parent="." index="0" instance=ExtResource( 2 )]
 
@@ -85,5 +105,15 @@ process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = true
+
+[node name="animation_player" type="AnimationPlayer" parent="." index="10"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/enter = SubResource( 1 )
+blend_times = [  ]
 
 

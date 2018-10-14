@@ -4,15 +4,18 @@ var NUM_LEVELS = 2
 var current_level = 2
 
 onready var game_over = $hud/game_over
+onready var title_screen = $hud/title_screen
 
 func _ready():
-	game_over.connect("retry", self, "_retry")
-	game_over.connect("next_level", self, "_next_level")
-	
 	OS.set_window_maximized(true)
 	
+	game_over.connect("retry", self, "_retry")
+	game_over.connect("next_level", self, "_next_level")
 	game_over.visible = false
-	_instance_level()
+	
+	title_screen.connect("dismissed", self, "_instance_level")
+	title_screen.visible = true
+	title_screen.animate_in()
 
 func _instance_level():
 	for child in $level.get_children():

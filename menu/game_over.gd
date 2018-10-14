@@ -50,10 +50,11 @@ func init(stars, damage, survived, has_next_level):
 
 func animate_in():
 	show()
+	$animation_player.play("enter")
 
 func animate_out():
 	dismissed = true
-	hide()
+	$animation_player.play("leave")
 
 func _retry_pressed():
 	if dismissed:

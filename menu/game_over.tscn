@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://menu/game_over.gd" type="Script" id=1]
 [ext_resource path="res://menu/menu_background.svg" type="Texture" id=2]
@@ -49,9 +49,62 @@ use_filter = true
 font_data = SubResource( 5 )
 _sections_unfolded = [ "Font", "Resource", "Settings" ]
 
+[sub_resource type="Animation" id=8]
+
+resource_name = "enter"
+length = 0.6
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( -2.56746, -2.56746 ),
+"update": 0,
+"values": [ Vector2( 0, -1080 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+
+resource_name = "leave"
+length = 0.6
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 2.01877, 2.01877 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 1080 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [node name="game_over" type="Node2D" index="0"]
 
+visible = false
+position = Vector2( 0, 1080 )
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="menu_background" type="Sprite" parent="." index="0"]
 
@@ -208,5 +261,16 @@ text = "NEXT LEVEL"
 flat = false
 align = 1
 _sections_unfolded = [ "Mouse", "custom_colors", "custom_constants", "custom_fonts" ]
+
+[node name="animation_player" type="AnimationPlayer" parent="." index="6"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/enter = SubResource( 8 )
+anims/leave = SubResource( 9 )
+blend_times = [  ]
 
 
