@@ -35,7 +35,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="line_sprite" type="Sprite" parent="." index="1"]
 
-self_modulate = Color( 1, 1, 1, 0.25098 )
+self_modulate = Color( 1, 1, 1, 0.54902 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 7680, 8 )
@@ -43,7 +43,7 @@ _sections_unfolded = [ "Region", "Visibility" ]
 
 [node name="stars_sprite" type="Sprite" parent="." index="2"]
 
-self_modulate = Color( 1, 1, 1, 0.25098 )
+self_modulate = Color( 1, 1, 1, 0.12549 )
 position = Vector2( 0, 24 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 7680, 48 )

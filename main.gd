@@ -1,6 +1,6 @@
 extends Node2D
 
-var NUM_LEVELS = 5
+var NUM_LEVELS = 6
 var current_level = 1
 
 onready var game_over = $hud/game_over
