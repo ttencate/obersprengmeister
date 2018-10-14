@@ -39,8 +39,14 @@ _sections_unfolded = [ "Offset" ]
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="1"]
 
+visible = false
+
 [node name="collision_shape_2d_2" type="CollisionShape2D" parent="." index="2"]
 
+visible = false
+
 [node name="collision_shape_2d_3" type="CollisionShape2D" parent="." index="3"]
+
+visible = false
 
 

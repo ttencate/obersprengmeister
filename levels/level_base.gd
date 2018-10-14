@@ -24,6 +24,8 @@ func _bomb_exploded(bomb):
 	explosion.global_position = bomb.global_position
 	var scale = 0.0007 * bomb.strength
 	explosion.scale = Vector2(scale, scale)
+	
+	$camera.shake()
 
 func _player_exploded(bomb):
 	_bomb_exploded(bomb)

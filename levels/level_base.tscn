@@ -37,7 +37,7 @@ stars = 3
 
 [node name="player" parent="." index="5" instance=ExtResource( 7 )]
 
-position = Vector2( 960, 704 )
+position = Vector2( 960, 768 )
 
 [node name="remote_transform_2d" type="RemoteTransform2D" parent="player" index="5"]
 
