@@ -1,6 +1,7 @@
 extends Area2D
 tool
 
+export(Resource) var sound = null
 export(Texture) var stars_texture = null setget _set_stars_texture
 export(int) var stars = 0
 
@@ -12,6 +13,9 @@ func _ready():
 	_set_stars_texture(stars_texture)
 	if Engine.editor_hint:
 		return
+	
+	if sound:
+		$achieved_sound.stream = sound
 	
 	connect("body_entered", self, "_body_entered")
 	connect("body_exited", self, "_body_exited")
@@ -35,9 +39,14 @@ func is_target_body(body):
 func achieve():
 	disconnect("body_entered", self, "_body_entered")
 	disconnect("body_exited", self, "_body_exited")
+	
 	print("achieved %d stars" % stars)
+	
 	$line_sprite.self_modulate = Color(1, 1, 1, 1)
 	$stars_sprite.self_modulate = Color(1, 1, 1, 1)
+	
+	$achieved_sound.play()
+	
 	emit_signal("achieved", stars)
 
 func _set_stars_texture(texture):

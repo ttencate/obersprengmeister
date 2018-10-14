@@ -1,13 +1,17 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://levels/level_base.gd" type="Script" id=1]
 [ext_resource path="res://background/ground.tscn" type="PackedScene" id=2]
 [ext_resource path="res://background/target_area_base.tscn" type="PackedScene" id=3]
-[ext_resource path="res://background/target_1.svg" type="Texture" id=4]
-[ext_resource path="res://background/target_2.svg" type="Texture" id=5]
-[ext_resource path="res://background/target_3.svg" type="Texture" id=6]
-[ext_resource path="res://player/player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://background/camera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://sounds/stars_1.wav" type="AudioStream" id=4]
+[ext_resource path="res://background/target_1.svg" type="Texture" id=5]
+[ext_resource path="res://sounds/stars_2.wav" type="AudioStream" id=6]
+[ext_resource path="res://background/target_2.svg" type="Texture" id=7]
+[ext_resource path="res://sounds/stars_3.wav" type="AudioStream" id=8]
+[ext_resource path="res://background/target_3.svg" type="Texture" id=9]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://background/camera.tscn" type="PackedScene" id=11]
+[ext_resource path="res://sounds/alarm.wav" type="AudioStream" id=12]
 
 [sub_resource type="Animation" id=1]
 
@@ -38,27 +42,48 @@ _sections_unfolded = [ "Visibility" ]
 [node name="target_area_1" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 960, 192 )
-stars_texture = ExtResource( 4 )
+sound = ExtResource( 4 )
+stars_texture = ExtResource( 5 )
 stars = 1
 
 [node name="target_area_2" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 960, 384 )
-stars_texture = ExtResource( 5 )
+sound = ExtResource( 6 )
+stars_texture = ExtResource( 7 )
 stars = 2
 
 [node name="target_area_3" parent="." index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 960, 576 )
-stars_texture = ExtResource( 6 )
+sound = ExtResource( 8 )
+stars_texture = ExtResource( 9 )
 stars = 3
 
-[node name="buildings" type="Node2D" parent="." index="4"]
+[node name="safe_zone" type="Area2D" parent="." index="4"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+monitorable = false
+collision_layer = 32
+collision_mask = 8
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="safe_zone" index="0"]
+
+[node name="collision_shape_2d_2" type="CollisionShape2D" parent="safe_zone" index="1"]
+
+[node name="buildings" type="Node2D" parent="." index="5"]
 
 z_index = 100
 _sections_unfolded = [ "Z Index" ]
 
-[node name="player" parent="." index="5" instance=ExtResource( 7 )]
+[node name="player" parent="." index="6" instance=ExtResource( 10 )]
 
 position = Vector2( 960, 768 )
 z_index = 200
@@ -73,28 +98,13 @@ update_rotation = false
 update_scale = false
 _sections_unfolded = [ "Update" ]
 
-[node name="explosions" type="Node2D" parent="." index="6"]
+[node name="explosions" type="Node2D" parent="." index="7"]
 
 position = Vector2( 960, 768 )
 z_index = 300
 _sections_unfolded = [ "Z Index" ]
 
-[node name="safe_zone" type="Area2D" parent="." index="7"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-monitorable = false
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="collision_shape_2d" type="CollisionShape2D" parent="safe_zone" index="0"]
-
-[node name="collision_shape_2d_2" type="CollisionShape2D" parent="safe_zone" index="1"]
-
-[node name="camera" parent="." index="8" instance=ExtResource( 8 )]
+[node name="camera" parent="." index="8" instance=ExtResource( 11 )]
 
 position = Vector2( 960, 704 )
 remote_transform_node = NodePath("../player/remote_transform_2d")
@@ -115,5 +125,16 @@ playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/enter = SubResource( 1 )
 blend_times = [  ]
+
+[node name="alarm" type="AudioStreamPlayer2D" parent="." index="11"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 

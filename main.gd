@@ -1,7 +1,7 @@
 extends Node2D
 
-var NUM_LEVELS = 2
-var current_level = 2
+var NUM_LEVELS = 5
+var current_level = 1
 
 onready var game_over = $hud/game_over
 onready var title_screen = $hud/title_screen
@@ -25,8 +25,18 @@ func _instance_level():
 	$level.add_child(level)
 	
 	level.connect("completed", self, "_level_completed")
+	level.connect("demolishing", self, "_level_demolishing")
+	
+	$music.volume_db = -6
+	if not $music.playing:
+		$music.play()
+
+func _level_demolishing():
+	$music.volume_db = -12
 
 func _level_completed(stars, damage, survived):
+	$music.volume_db = -12
+	
 	game_over.init(stars, damage, survived, current_level < NUM_LEVELS)
 	game_over.animate_in()
 

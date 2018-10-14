@@ -1,5 +1,6 @@
 extends Node2D
 
+signal demolishing
 signal completed
 
 var any_bombs_placed = false
@@ -20,10 +21,6 @@ func _ready():
 	$camera.connect("zoomed_in_to_player", $player, "start")
 	
 	$check_completion_timer.connect("timeout", self, "_check_completion")
-	
-	for block in get_tree().get_nodes_in_group("blocks"):
-		if block is RigidBody2D:
-			block.connect("sleeping_state_changed", self, "_block_sleeping_state_changed")
 
 func _enter_tree():
 	$animation_player.play("enter")
@@ -38,7 +35,7 @@ func _bomb_exploded(bomb):
 	var explosion = preload("res://bomb/explosion.tscn").instance()
 	$explosions.add_child(explosion)
 	explosion.global_position = bomb.global_position
-	var scale = 0.0002 * bomb.strength
+	var scale = 0.7 # 0.0002 * bomb.strength
 	explosion.scale = Vector2(scale, scale)
 	
 	$camera.shake()
@@ -79,10 +76,10 @@ func _safe_zone_entered(object):
 			if bomb.is_started():
 				bomb.delay = bomb.time_left() - time_to_kill
 				bomb.start()
-
-func _block_sleeping_state_changed():
 	
-	_check_completion()
+	$alarm.play()
+	
+	emit_signal("demolishing")
 
 func _check_completion():
 	if is_completed:

@@ -164,8 +164,12 @@ func _process_bomb_placement():
 		if can_place_bomb:
 			var bomb = preload("res://bomb/bomb.tscn").instance()
 			bomb.place(ray_end, $ray_cast.get_collision_normal(), $ray_cast.get_collider())
+			bomb.z_index = 1
 			bomb.delay = self.bomb.delay
 			bomb.start()
+			
+			$place_bomb.play()
+			
 			emit_signal("placed_bomb", bomb)
 		else:
 			pass # TODO play sound effect
@@ -214,10 +218,14 @@ func _bomb_exploded(bomb):
 func take_damage(bomb):
 	if dead or immortal:
 		return
+	
 	print("player exploded")
 	visible = false
 	dead = true
 	takes_input = false
 	collision_layer = 0
 	collision_mask = 0
+	
+	$scream.play()
+	
 	emit_signal("died")

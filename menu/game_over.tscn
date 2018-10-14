@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://menu/game_over.gd" type="Script" id=1]
 [ext_resource path="res://menu/menu_background.svg" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://menu/button_pressed.tres" type="StyleBox" id=5]
 [ext_resource path="res://menu/button_disabled.tres" type="StyleBox" id=6]
 [ext_resource path="res://menu/button_up.tres" type="StyleBox" id=7]
+[ext_resource path="res://sounds/win.wav" type="AudioStream" id=8]
+[ext_resource path="res://sounds/lose.wav" type="AudioStream" id=9]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -67,6 +69,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, -1080 ), Vector2( 0, 0 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
 
 [sub_resource type="Animation" id=9]
 
@@ -101,8 +115,6 @@ tracks/1/keys = {
 
 [node name="game_over" type="Node2D" index="0"]
 
-visible = false
-position = Vector2( 0, 1080 )
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -118,21 +130,21 @@ position = Vector2( 960, 320 )
 
 [node name="star_1" type="Sprite" parent="stars" index="0"]
 
-self_modulate = Color( 1, 1, 1, 0.360784 )
 position = Vector2( -224, 160 )
 texture = ExtResource( 3 )
+_sections_unfolded = [ "Visibility" ]
 
 [node name="star_2" type="Sprite" parent="stars" index="1"]
 
-self_modulate = Color( 1, 1, 1, 0.360784 )
 position = Vector2( 0, 96 )
 texture = ExtResource( 3 )
+_sections_unfolded = [ "Material", "Visibility" ]
 
 [node name="star_3" type="Sprite" parent="stars" index="2"]
 
-self_modulate = Color( 1, 1, 1, 0.360784 )
 position = Vector2( 224, 160 )
 texture = ExtResource( 3 )
+_sections_unfolded = [ "Visibility" ]
 
 [node name="outcome" type="Label" parent="." index="2"]
 
@@ -272,5 +284,23 @@ playback_speed = 1.0
 anims/enter = SubResource( 8 )
 anims/leave = SubResource( 9 )
 blend_times = [  ]
+
+[node name="win_sound" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = ExtResource( 8 )
+volume_db = -5.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="lose_sound" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 9 )
+volume_db = -5.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 

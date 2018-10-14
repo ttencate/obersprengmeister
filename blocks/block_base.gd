@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-export(Color) var color
-export(bool) var is_target
+export(Color) var color = Color(1, 1, 1, 1)
+export(bool) var is_target = true
 
 var initial_transform
 
@@ -21,6 +21,6 @@ func civilian_damage():
 		(initial_transform * a).distance_to(final_transform * a) +
 		(initial_transform * b).distance_to(final_transform * b)
 	)
-	if damage < 32:
+	if damage < 128:
 		return 0
 	return damage

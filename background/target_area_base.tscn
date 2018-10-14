@@ -22,9 +22,9 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
+sound = null
 stars_texture = null
 stars = 0
-target_parent = NodePath("../buildings/target_building")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="." index="0"]
 
@@ -48,5 +48,14 @@ position = Vector2( 0, 24 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 7680, 48 )
 _sections_unfolded = [ "Material", "Region", "Visibility" ]
+
+[node name="achieved_sound" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = null
+volume_db = -12.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 

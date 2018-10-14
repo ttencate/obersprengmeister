@@ -21,7 +21,7 @@ func init(stars, damage, survived, has_next_level):
 			explanation = "You may have leveled the building, but you also blew yourself up. Try not to do that."
 	elif damage > 0:
 		outcome = "Insurance Trouble"
-		explanation = "Some buildings were damaged that shouldn't be. Be more careful!"
+		explanation = "You caused $%d in property damage. Be more careful!" % [damage]
 	elif stars == 0:
 		outcome = "Not Enough Boom"
 		explanation = "It may have looked spectacular, but the building didn't get leveled sufficiently. Try to use more explosives, or place them better!"
@@ -35,10 +35,10 @@ func init(stars, damage, survived, has_next_level):
 	
 	var star_sprites = $stars.get_children()
 	for i in range(1, 4):
-		if stars >= i:
-			star_sprites[i - 1].texture = preload("res://menu/star_filled.svg")
-			if success:
-				star_sprites[i - 1].self_modulate = Color(1, 1, 1)
+		star_sprites[i - 1].texture = (
+			preload("res://menu/star_filled.svg") if stars >= i else
+			preload("res://menu/star_empty.svg"))
+	$stars.modulate = Color(1, 1, 1, 1 if success else 0.25)
 	
 	$outcome.text = outcome
 	$explanation.text = explanation
@@ -47,9 +47,13 @@ func init(stars, damage, survived, has_next_level):
 	$next_level.disabled = !success
 	
 	dismissed = false
+	
+	if success:
+		$win_sound.play()
+	else:
+		$lose_sound.play()
 
 func animate_in():
-	show()
 	$animation_player.play("enter")
 
 func animate_out():

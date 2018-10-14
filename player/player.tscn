@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/dotted_line.svg" type="Texture" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://player/boot_back.svg" type="Texture" id=17]
 [ext_resource path="res://player/hand_front.svg" type="Texture" id=18]
 [ext_resource path="res://bomb/bomb.tscn" type="PackedScene" id=19]
+[ext_resource path="res://sounds/wilhelm_scream.wav" type="AudioStream" id=20]
+[ext_resource path="res://sounds/place.wav" type="AudioStream" id=21]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -31,7 +33,7 @@ height = 64.0
 custom_solver_bias = 0.0
 extents = Vector2( 32, 64 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=3]
 
 animations = [ {
 "frames": [ ExtResource( 3 ) ],
@@ -50,7 +52,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
 "frames": [ ExtResource( 4 ) ],
@@ -79,7 +81,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=5]
 
 animations = [ {
 "frames": [ ExtResource( 10 ) ],
@@ -103,7 +105,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=6]
 
 animations = [ {
 "frames": [ ExtResource( 14 ) ],
@@ -127,7 +129,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=7]
 
 animations = [ {
 "frames": [ ExtResource( 18 ) ],
@@ -146,7 +148,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=8]
 
 resource_name = "climb"
 length = 0.8
@@ -417,7 +419,7 @@ tracks/21/keys = {
 "values": [ 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=9]
 
 resource_name = "cower"
 length = 1.0
@@ -688,7 +690,7 @@ tracks/21/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=10]
 
 resource_name = "fall"
 length = 1.0
@@ -959,9 +961,8 @@ tracks/21/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=11]
 
-resource_name = "stand"
 length = 1.0
 loop = false
 step = 0.1
@@ -1230,9 +1231,8 @@ tracks/21/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=12]
 
-resource_name = "walk_left"
 length = 0.4
 loop = true
 step = 0.05
@@ -1513,9 +1513,8 @@ tracks/22/keys = {
 "values": [ 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=13]
 
-resource_name = "walk_right"
 length = 0.4
 loop = true
 step = 0.05
@@ -1866,48 +1865,48 @@ shape = SubResource( 2 )
 [node name="torso" type="AnimatedSprite" parent="." index="3"]
 
 position = Vector2( 0, -54 )
-frames = SubResource( 7 )
+frames = SubResource( 3 )
 animation = "right"
 
 [node name="head" type="AnimatedSprite" parent="torso" index="0"]
 
 position = Vector2( -1, -47 )
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "front"
-frame = 10
+frame = 22
 playing = true
 
 [node name="helmet" type="AnimatedSprite" parent="torso/head" index="0"]
 
 position = Vector2( 1, -11 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "front"
 playing = true
 
 [node name="boot_left" type="AnimatedSprite" parent="torso" index="1"]
 
 position = Vector2( 11, 38 )
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "front"
 _sections_unfolded = [ "Transform" ]
 
 [node name="boot_right" type="AnimatedSprite" parent="torso" index="2"]
 
 position = Vector2( -11, 38 )
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "front"
 
 [node name="hand_right" type="AnimatedSprite" parent="torso" index="3"]
 
 position = Vector2( -23, 2 )
-frames = SubResource( 6 )
+frames = SubResource( 7 )
 animation = "front"
 _sections_unfolded = [ "Z Index" ]
 
 [node name="hand_left" type="AnimatedSprite" parent="torso" index="4"]
 
 position = Vector2( 20.9496, 1.73775 )
-frames = SubResource( 6 )
+frames = SubResource( 7 )
 animation = "front"
 _sections_unfolded = [ "Transform" ]
 
@@ -1923,12 +1922,34 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/climb = SubResource( 13 )
-anims/cower = SubResource( 12 )
-anims/fall = SubResource( 11 )
-anims/stand = SubResource( 8 )
-anims/walk_left = SubResource( 9 )
-anims/walk_right = SubResource( 10 )
+anims/climb = SubResource( 8 )
+anims/cower = SubResource( 9 )
+anims/fall = SubResource( 10 )
+anims/stand = SubResource( 11 )
+anims/walk_left = SubResource( 12 )
+anims/walk_right = SubResource( 13 )
 blend_times = [  ]
+
+[node name="scream" type="AudioStreamPlayer2D" parent="." index="5"]
+
+stream = ExtResource( 20 )
+volume_db = -3.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="place_bomb" type="AudioStreamPlayer2D" parent="." index="6"]
+
+stream = ExtResource( 21 )
+volume_db = -6.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 
