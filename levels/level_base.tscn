@@ -35,11 +35,6 @@ stars = 3
 
 [node name="buildings" type="Node2D" parent="." index="4"]
 
-[node name="target_building" type="Node2D" parent="buildings" index="0"]
-
-position = Vector2( 960, 760 )
-_sections_unfolded = [ "Transform" ]
-
 [node name="player" parent="." index="5" instance=ExtResource( 7 )]
 
 position = Vector2( 960, 704 )

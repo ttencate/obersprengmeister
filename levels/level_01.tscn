@@ -22,7 +22,6 @@ extents = Vector2( 1024, 128 )
 
 modulate = Color( 1, 0.941176, 0.941176, 0.941176 )
 position = Vector2( 0, 96 )
-_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="target_area_1" parent="." index="1"]
 
@@ -36,43 +35,49 @@ position = Vector2( 960, 512 )
 
 position = Vector2( 960, 608 )
 
-[node name="buildings" parent="." index="4"]
+[node name="block_01" parent="buildings" index="0" instance=ExtResource( 3 )]
 
-editor/display_folded = true
+position = Vector2( 960, 512 )
+color = Color( 0.12549, 0.25098, 1, 1 )
+is_target = true
 
-[node name="block_01" parent="buildings/target_building" index="0" instance=ExtResource( 3 )]
+[node name="block_02" parent="buildings" index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 0, -248 )
+position = Vector2( 448, 512 )
+color = Color( 0.12549, 0.25098, 1, 1 )
+is_target = true
 
-[node name="block_02" parent="buildings/target_building" index="1" instance=ExtResource( 3 )]
+[node name="block_03" parent="buildings" index="2" instance=ExtResource( 3 )]
 
-position = Vector2( -512, -248 )
+position = Vector2( 1472, 512 )
+color = Color( 0.12549, 0.25098, 1, 1 )
+is_target = true
 
-[node name="block_03" parent="buildings/target_building" index="2" instance=ExtResource( 3 )]
+[node name="block_04" parent="buildings" index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 512, -248 )
+position = Vector2( 704, 224 )
+color = Color( 1, 0.121569, 0, 1 )
+is_target = true
 
-[node name="block_04" parent="buildings/target_building" index="3" instance=ExtResource( 4 )]
+[node name="block_05" parent="buildings" index="4" instance=ExtResource( 4 )]
 
-position = Vector2( -256, -536 )
+position = Vector2( 1216, 224 )
+color = Color( 1, 0.12549, 0, 1 )
+is_target = true
 
-[node name="block_05" parent="buildings/target_building" index="4" instance=ExtResource( 4 )]
+[node name="ladder" parent="buildings" index="5" instance=ExtResource( 5 )]
 
-position = Vector2( 256, -536 )
-
-[node name="ladder" parent="buildings/target_building" index="5" instance=ExtResource( 5 )]
-
-position = Vector2( 128, 8 )
+position = Vector2( 1088, 768 )
 height = 640.0
 
-[node name="ladder_2" parent="buildings/target_building" index="6" instance=ExtResource( 5 )]
+[node name="ladder_2" parent="buildings" index="6" instance=ExtResource( 5 )]
 
-position = Vector2( 640, 8 )
+position = Vector2( 1600, 768 )
 height = 640.0
 
-[node name="ladder_3" parent="buildings/target_building" index="7" instance=ExtResource( 5 )]
+[node name="ladder_3" parent="buildings" index="7" instance=ExtResource( 5 )]
 
-position = Vector2( -640, 8 )
+position = Vector2( 320, 768 )
 height = 640.0
 
 [node name="player" parent="." index="5"]

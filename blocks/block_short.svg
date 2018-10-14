@@ -23,11 +23,11 @@
        inkscape:collect="always"
        id="linearGradient8150">
       <stop
-         style="stop-color:#616161;stop-opacity:1;"
+         style="stop-color:#ffffff;stop-opacity:1"
          offset="0"
          id="stop8146" />
       <stop
-         style="stop-color:#404040;stop-opacity:1"
+         style="stop-color:#e0e0e0;stop-opacity:1"
          offset="1"
          id="stop8148" />
     </linearGradient>
@@ -49,8 +49,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6568544"
-     inkscape:cx="56.392608"
-     inkscape:cy="0.88238357"
+     inkscape:cx="55.862278"
+     inkscape:cy="9.5444414"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -100,7 +100,7 @@
        height="31.749983"
        width="14.81666"
        id="rect5278"
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#212121;stroke-width:2.64583325;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0.99968505;stroke-opacity:0.97029706"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#9e9e9e;stroke-width:2.64583325;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0.99968505;stroke-opacity:0.97029706"
        transform="matrix(0,1,1,0,0,0)" />
     <rect
        style="opacity:1;fill:url(#linearGradient8152);fill-opacity:1;stroke:none;stroke-width:1.05799997;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0.99968505;stroke-opacity:0.97029706"
@@ -113,9 +113,10 @@
        transform="matrix(0,1,1,0,0,0)" />
     <path
        style="opacity:0.2;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.99999952;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0.99968505;stroke-opacity:0.97029706"
-       d="M 124.92578,19.507812 C 122.66978,60.995017 64.145924,61 21,61 h 88 c 8.864,0 16,-7.135998 16,-16 V 21 c 0,-0.50387 -0.0291,-1.000479 -0.0742,-1.492188 z"
+       d="M 124.92578,19.507812 C 124.28518,31.288273 119.10771,39.724026 111.03371,45.7647 90.673527,60.997445 51.894463,61 21,61 h 88 c 8.864,0 16,-7.135998 16,-16 V 21 c 0,-0.50387 -0.0291,-1.000479 -0.0742,-1.492188 z"
        transform="matrix(0.26458333,0,0,0.26458333,-51.064601,229.00208)"
        id="path8133"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cscssscc" />
   </g>
 </svg>

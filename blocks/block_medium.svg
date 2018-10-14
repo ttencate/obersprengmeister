@@ -23,11 +23,11 @@
        inkscape:collect="always"
        id="linearGradient8747">
       <stop
-         style="stop-color:#616161;stop-opacity:1;"
+         style="stop-color:#ffffff;stop-opacity:1"
          offset="0"
          id="stop8743" />
       <stop
-         style="stop-color:#404040;stop-opacity:1"
+         style="stop-color:#e0e0e0;stop-opacity:1"
          offset="1"
          id="stop8745" />
     </linearGradient>
@@ -49,8 +49,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="4.0000001"
-     inkscape:cx="103.02081"
-     inkscape:cy="4.2204822"
+     inkscape:cx="105.02081"
+     inkscape:cy="1.4704823"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -100,7 +100,7 @@
        height="65.616653"
        width="14.816664"
        id="rect5278"
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#212121;stroke-width:2.64583325;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0.99968505;stroke-opacity:0.97029706"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#9e9e9e;stroke-width:2.64583325;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0.99968505;stroke-opacity:0.97029706"
        transform="matrix(0,1,1,0,0,0)" />
     <rect
        style="opacity:1;fill:url(#linearGradient8749);fill-opacity:1;stroke:none;stroke-width:1.05799997;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0.99968505;stroke-opacity:0.97029706"

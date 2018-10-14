@@ -43,6 +43,5 @@ func time_left():
 	return delay if $timer.is_stopped() else $timer.time_left
 
 func _set_delay(d):
-	print("set delay to ", d)
 	d = clamp(d, 1, 99)
 	delay = d

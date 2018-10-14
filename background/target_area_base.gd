@@ -3,7 +3,6 @@ tool
 
 export(Texture) var stars_texture = null setget _set_stars_texture
 export(int) var stars = 0
-export(NodePath) var target_parent = null
 
 signal achieved
 
@@ -31,7 +30,7 @@ func _body_exited(body):
 		achieve()
 
 func is_target_body(body):
-	return body.get_parent() != null and body.get_parent() == get_node(target_parent)
+	return body.has_method("is_target_block") and body.is_target_block()
 
 func achieve():
 	disconnect("body_entered", self, "_body_entered")
