@@ -9,8 +9,12 @@ func _ready():
 	$timer.connect("timeout", self, "explode")
 
 func start():
+	print("bomb started with delay %f" % [delay])
 	$timer.wait_time = delay
 	$timer.start()
+
+func is_started():
+	return !$timer.is_stopped()
 
 func _process(delta):
 	$display.text = '%d' % ceil(time_left())

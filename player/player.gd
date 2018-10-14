@@ -21,14 +21,18 @@ var state = State.WALKING
 var velocity = Vector2(0, 0)
 var ladders = []
 var takes_input = true
+var immortal = false
+var cowering = false
 var dead = false
+
+onready var bomb = find_node("bomb")
 
 func _ready():
 	$ladder_sensor.connect("area_entered", self, "ladder_entered")
 	$ladder_sensor.connect("area_exited", self, "ladder_exited")
-	$bomb.connect("exploded", self, "_bomb_exploded")
-	# $bomb.visible = false
-	$bomb.delay = 30
+	bomb.connect("exploded", self, "_bomb_exploded")
+	# bomb.visible = false
+	bomb.delay = 30
 
 func start():
 	pass
@@ -39,6 +43,8 @@ func _physics_process(delta):
 
 	_process_movement(direction, jumping, delta)
 	_process_bomb_placement()
+	
+	_update_animation(direction)
 
 func _input_direction():
 	var direction = Vector2()
@@ -120,15 +126,15 @@ func ladder_exited(ladder):
 		ladders.remove(index)
 
 func _unhandled_input(event):
-	if not has_node("bomb") or not $bomb.visible:
+	if not takes_input:
 		return
 	if Input.is_action_pressed("decrement_timer"):
-		$bomb.delay -= 1
+		bomb.delay -= 1
 	elif Input.is_action_pressed("increment_timer"):
-		$bomb.delay += 1
+		bomb.delay += 1
 
 func _process_bomb_placement():
-	if not has_node("bomb") or not $bomb.visible:
+	if not takes_input:
 		$ray_cast/bomb_line.visible = false
 		return
 	
@@ -158,24 +164,60 @@ func _process_bomb_placement():
 		if can_place_bomb:
 			var bomb = preload("res://bomb/bomb.tscn").instance()
 			bomb.place(ray_end, $ray_cast.get_collision_normal(), $ray_cast.get_collider())
-			bomb.delay = $bomb.delay
+			bomb.delay = self.bomb.delay
 			bomb.start()
 			emit_signal("placed_bomb", bomb)
 		else:
 			pass # TODO play sound effect
 
+func _update_animation(direction):
+	var animation
+	var playback_speed = 1
+	if cowering:
+		animation = "cower"
+	else:
+		match state:
+			State.WALKING:
+				if is_on_floor():
+					if direction.x < 0:
+						animation = "walk_left"
+					elif direction.x > 0:
+						animation = "walk_right"
+					else:
+						animation = "stand"
+				else:
+					animation = "fall"
+			State.CLIMBING:
+				animation = "climb"
+				if direction.y == 0:
+					playback_speed = 0
+				elif direction.y < 0:
+					playback_speed = -1
+	
+	if $animation_player.current_animation != animation:
+		$animation_player.play(animation)
+	$animation_player.playback_speed = playback_speed
+
 func cower():
 	takes_input = false
-	$bomb.queue_free()
+	cowering = true
+	self.bomb.hide()
+	# Stop blocks bumping into player.
 	collision_layer = 0
+	# Rest on the ground.
+	collision_mask = 128
 
 # Not currently used.
 func _bomb_exploded(bomb):
 	take_damage(bomb)
 
 func take_damage(bomb):
+	if dead or immortal:
+		return
 	print("player exploded")
 	visible = false
 	dead = true
 	takes_input = false
+	collision_layer = 0
+	collision_mask = 0
 	emit_signal("died")

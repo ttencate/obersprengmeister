@@ -19,8 +19,11 @@ func _ready():
 	$camera.zoom_in_to_player(3.0, 1.0)
 	$camera.connect("zoomed_in_to_player", $player, "start")
 	
-	for block in $buildings.get_children():
-		block.connect("sleeping_state_changed", self, "_block_sleeping_state_changed")
+	$check_completion_timer.connect("timeout", self, "_check_completion")
+	
+	for block in get_tree().get_nodes_in_group("blocks"):
+		if block is RigidBody2D:
+			block.connect("sleeping_state_changed", self, "_block_sleeping_state_changed")
 
 func _enter_tree():
 	$camera.make_current()
@@ -46,7 +49,6 @@ func _bomb_exploded(bomb):
 
 func _player_died():
 	pass
-	# call_deferred("_check_completion")
 
 func _safe_zone_entered(object):
 	if object != $player:
@@ -73,13 +75,11 @@ func _safe_zone_entered(object):
 	var time_to_kill = min_time_left - 3
 	if time_to_kill > 0:
 		for bomb in bombs:
-			bomb.delay = bomb.time_left() - time_to_kill
-			bomb.start()
+			if bomb.is_started():
+				bomb.delay = bomb.time_left() - time_to_kill
+				bomb.start()
 
 func _block_sleeping_state_changed():
-	for block in $buildings.get_children():
-		if block is RigidBody2D and not block.sleeping:
-			return
 	
 	_check_completion()
 
@@ -89,17 +89,34 @@ func _check_completion():
 	
 	var survived = not $player.dead
 	
-	if survived and not any_bombs_placed or active_bombs.size() > 0:
+	# Still waiting for bombs? Not completed.
+	if survived and (not any_bombs_placed or active_bombs.size() > 0):
 		return
 	
+	# Still waiting for blocks to come to rest? Not completed.
+	for block in get_tree().get_nodes_in_group("blocks"):
+		if not _is_resting(block):
+			return
+	
 	var damage = 0
-	for block in $buildings.get_children():
+	for block in get_tree().get_nodes_in_group("blocks"):
 		if block.has_method("is_target_block") and not block.is_target_block():
 			damage += block.civilian_damage()
 	
 	is_completed = true
 	print("level completed with %d stars, $%d damage, survival: %s" % [stars, damage, survived])
 	emit_signal("completed", stars, damage, survived)
+
+func _is_resting(block):
+	if not (block is RigidBody2D):
+		return true
+	if block.global_position.y > 1080:
+		return true # Block fell off the screen.
+	if block.sleeping:
+		return true
+	if block.linear_velocity.length() < 10 and abs(block.angular_velocity) < deg2rad(1):
+		return true
+	return false
 
 func _target_achieved(stars):
 	if stars > self.stars:

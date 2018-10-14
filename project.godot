@@ -82,6 +82,7 @@ increment_timer=[ Object(InputEventMouseButton,"resource_local_to_scene":false,"
 2d_physics/layer_5="bombs"
 2d_physics/layer_6="safe_zone"
 2d_physics/layer_7="target_areas"
+2d_physics/layer_8="ground"
 
 [node]
 

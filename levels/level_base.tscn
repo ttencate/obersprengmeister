@@ -9,7 +9,7 @@
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://background/camera.tscn" type="PackedScene" id=8]
 
-[node name="level_base" type="Node2D" index="0"]
+[node name="level_base" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -35,9 +35,14 @@ stars = 3
 
 [node name="buildings" type="Node2D" parent="." index="4"]
 
+z_index = 100
+_sections_unfolded = [ "Z Index" ]
+
 [node name="player" parent="." index="5" instance=ExtResource( 7 )]
 
 position = Vector2( 960, 768 )
+z_index = 200
+_sections_unfolded = [ "Collision", "Z Index" ]
 
 [node name="remote_transform_2d" type="RemoteTransform2D" parent="player" index="5"]
 
@@ -51,6 +56,8 @@ _sections_unfolded = [ "Update" ]
 [node name="explosions" type="Node2D" parent="." index="6"]
 
 position = Vector2( 960, 768 )
+z_index = 300
+_sections_unfolded = [ "Z Index" ]
 
 [node name="safe_zone" type="Area2D" parent="." index="7"]
 
@@ -71,5 +78,12 @@ audio_bus_name = "Master"
 
 position = Vector2( 960, 704 )
 remote_transform_node = NodePath("../player/remote_transform_2d")
+
+[node name="check_completion_timer" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
 
 
