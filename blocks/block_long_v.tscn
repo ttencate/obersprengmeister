@@ -22,8 +22,7 @@ height = 31.9998
 [node name="block_long_v" index="0" instance=ExtResource( 1 )]
 
 collision_layer = 1
-color = null
-is_target = null
+mass = 4.0
 
 [node name="sprite" parent="." index="0"]
 
@@ -33,12 +32,10 @@ _sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
 [node name="collision_shape_2d" parent="." index="1"]
 
-visible = false
 shape = SubResource( 1 )
 
 [node name="collision_shape_2d_2" parent="." index="2"]
 
-visible = false
 position = Vector2( 0, -240 )
 rotation = 1.5708
 shape = SubResource( 2 )
@@ -46,7 +43,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="collision_shape_2d_3" parent="." index="3"]
 
-visible = false
 position = Vector2( 0, 240 )
 rotation = 1.57079
 shape = SubResource( 3 )

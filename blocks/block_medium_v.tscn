@@ -23,6 +23,7 @@ height = 32.0
 [node name="block_medium_v" index="0" instance=ExtResource( 1 )]
 
 collision_layer = 1
+mass = 2.0
 
 [node name="sprite" parent="." index="0"]
 

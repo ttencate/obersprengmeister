@@ -23,7 +23,7 @@ _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
 delay = 5
-strength = 1000
+strength = 4000
 
 [node name="bomb" type="Sprite" parent="." index="0"]
 

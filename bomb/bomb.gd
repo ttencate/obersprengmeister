@@ -1,7 +1,7 @@
 extends Node2D
 
 export(float) var delay = 5 setget _set_delay
-export(float) var strength = 1000
+export(float) var strength = 4000
 
 signal exploded
 

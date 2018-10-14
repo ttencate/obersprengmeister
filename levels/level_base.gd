@@ -3,6 +3,8 @@ extends Node2D
 var any_bombs_placed = false
 var stars = 0
 
+var active_bombs = []
+
 func _ready():
 	$player.connect("placed_bomb", self, "_player_placed_bomb")
 	$player.connect("exploded", self, "_player_exploded")
@@ -13,19 +15,25 @@ func _ready():
 	
 	$camera.zoom_in_to_player(3.0, 1.0)
 	$camera.connect("zoomed_in_to_player", $player, "start")
+	
+	for block in $buildings.get_children():
+		block.connect("sleeping_state_changed", self, "_block_sleeping_state_changed")
 
 func _player_placed_bomb(bomb):
 	any_bombs_placed = true
 	bomb.connect("exploded", self, "_bomb_exploded")
+	active_bombs.push_back(bomb)
 
 func _bomb_exploded(bomb):
 	var explosion = preload("res://bomb/explosion.tscn").instance()
 	$explosions.add_child(explosion)
 	explosion.global_position = bomb.global_position
-	var scale = 0.0007 * bomb.strength
+	var scale = 0.0002 * bomb.strength
 	explosion.scale = Vector2(scale, scale)
 	
 	$camera.shake()
+	
+	active_bombs.erase(bomb)
 
 func _player_exploded(bomb):
 	_bomb_exploded(bomb)
@@ -60,7 +68,17 @@ func _safe_zone_entered(object):
 			bomb.delay = bomb.time_left() - time_to_kill
 			bomb.start()
 
+func _block_sleeping_state_changed():
+	if not any_bombs_placed or active_bombs.size() > 0:
+		return
+	
+	for block in $buildings.get_children():
+		if not block.sleeping:
+			return
+	
+	print("level completed")
+	# TODO show end screen
+
 func _target_achieved(stars):
 	if stars > self.stars:
 		self.stars = stars
-		# TODO eventually win screen
