@@ -12,7 +12,7 @@ mkdir -p $export
 touch $export/.gdignore
 
 # This creates the .pck file four times.
-godot --no-window --export 'HTML5' $export/index
+godot --no-window --export 'HTML5' $export/index.html
 godot --no-window --export 'Linux/X11' $export/$game.x86_64
 godot --no-window --export 'Windows Desktop' $export/$game.exe
 godot --no-window --export 'Mac OSX' $export/$game-mac.zip
