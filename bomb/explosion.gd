@@ -23,3 +23,7 @@ func _ready():
 	
 	$sound.stream = SOUNDS[randi() % SOUNDS.size()]
 	$sound.pitch_scale = rand_range(0.9, 1.1)
+	
+	var smoke_scene = preload("res://bomb/smoke.tscn")
+	for i in range(16):
+		$smoke.add_child(smoke_scene.instance())
